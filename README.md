@@ -5,7 +5,6 @@ An AI-powered morning briefing app that pulls together your Gmail, Google Calend
 ![Stack](https://img.shields.io/badge/backend-FastAPI%20%2B%20Python%203.11-blue)
 ![Stack](https://img.shields.io/badge/frontend-React%2018%20%2B%20Vite%207-61dafb)
 ![Stack](https://img.shields.io/badge/AI-Gemini-orange)
-![License](https://img.shields.io/badge/license-MIT-green)
 
 ---
 
@@ -241,8 +240,4 @@ Each briefing run executes 6 stages:
 - **Partial failure tolerance** — if one source (e.g. Notion) fails, the briefing runs with the remaining data and is flagged as `partial`.
 - **Retry with server hint** — Gemini 429 responses include a `retryDelay` suggestion; the service reads and honours it instead of burning retries with fixed backoff.
 
----
 
-## License
-
-MIT
