@@ -4,7 +4,7 @@ An AI-powered morning briefing app that pulls together your Gmail, Google Calend
 
 ![Stack](https://img.shields.io/badge/backend-FastAPI%20%2B%20Python%203.11-blue)
 ![Stack](https://img.shields.io/badge/frontend-React%2018%20%2B%20Vite%207-61dafb)
-![Stack](https://img.shields.io/badge/AI-Gemini%201.5%20Flash-orange)
+![Stack](https://img.shields.io/badge/AI-Gemini-orange)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 ---
@@ -28,7 +28,7 @@ An AI-powered morning briefing app that pulls together your Gmail, Google Calend
 |---|---|
 | Backend | Python 3.11, FastAPI 0.115, Uvicorn |
 | Database | SQLite via SQLAlchemy 2.0 (async) + aiosqlite |
-| AI | Google Gemini 1.5 Flash (`google-genai` SDK) |
+| AI | Google Gemini (`google-genai` SDK) |
 | Auth | JWT (`python-jose`), bcrypt passwords, Fernet token encryption |
 | External APIs | Gmail REST API, Google Calendar REST API, Notion REST API |
 | Frontend | React 18, Vite 7, TypeScript (strict), Tailwind CSS 3 |
@@ -48,46 +48,83 @@ An AI-powered morning briefing app that pulls together your Gmail, Google Calend
 
 ---
 
-## Quick start (Windows)
+## Running the project
 
-```bat
+### 1. Clone and configure
+
+```bash
 git clone <repo-url>
 cd dailybrief
 copy backend\.env.example backend\.env
 ```
 
-Fill in `backend\.env` (see [Environment variables](#environment-variables) below), then:
-
-```bat
-start.bat
-```
-
-This creates the Python virtual environment, installs all dependencies, and opens the backend and frontend in separate terminal windows.
-
-- Frontend → http://localhost:5173
-- Backend API → http://localhost:8000
-- Swagger docs → http://localhost:8000/docs
+Open `backend\.env` and fill in your keys (see [Environment variables](#environment-variables) below).
 
 ---
 
-## Manual setup
-
-### Backend
+### 2. Backend
 
 ```bash
 cd backend
+
+# Create and activate a virtual environment
 python -m venv venv
-venv\Scripts\activate       # Windows
+venv\Scripts\activate        # Windows
+# source venv/bin/activate   # macOS / Linux
+
+# Install dependencies
 pip install -r requirements.txt
+
+# Start the server
 uvicorn main:app --reload --port 8000
 ```
 
-### Frontend
+The API is now running at **http://localhost:8000**  
+Interactive docs: **http://localhost:8000/docs**
+
+---
+
+### 3. Frontend
+
+Open a second terminal:
 
 ```bash
 cd frontend
+
+# Install dependencies (first run only)
 npm install
+
+# Start the dev server
 npm run dev
+```
+
+The app is now running at **http://localhost:5173**
+
+---
+
+### 4. First-time setup in the browser
+
+1. Go to **http://localhost:5173** and create an account
+2. Click **Connect** to link Gmail + Google Calendar via Google OAuth
+3. Go to **Settings** (⚙ icon on the dashboard) and paste your Notion integration token and database ID
+4. Click **Run Briefing** — you're good to go
+
+---
+
+### Other useful commands
+
+```bash
+# Backend — run without auto-reload (production-like)
+uvicorn main:app --port 8000
+
+# Frontend — production build
+npm run build
+
+# Frontend — preview production build locally
+npm run preview
+
+# Frontend — lint (zero warnings policy)
+npm run lint
 ```
 
 ---
